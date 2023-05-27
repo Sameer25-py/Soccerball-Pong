@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,30 +8,25 @@ public class Ball : MonoBehaviour
     private Rigidbody2D _rb2D;
     private Vector2     _direction;
 
-    public void SetDirection(Vector2 direction)
+    public void SetDirection(Vector2 dir)
     {
-        _direction = direction;
+        _direction = dir;
     }
-
     private void OnEnable()
     {
         _rb2D = GetComponent<Rigidbody2D>();
-        _direction = new Vector2(
-            Random.Range(-1f, 1f),
-            Random.Range(-1, 2)
-        );
-    }
 
+    }
+    
     private void OnCollisionEnter2D(Collision2D col)
     {
         _direction = Vector2.Reflect(_direction, col.contacts[0]
-                .normal)
-            .normalized;
+            .normal) * 2f;
+        _direction = _direction.normalized;
     }
-
-
-    private void Update()
+    
+    private void FixedUpdate()
     {
-        _rb2D.position += _direction * (Time.deltaTime * Speed);
+        _rb2D.velocity = _direction * (Time.deltaTime * Speed);
     }
 }

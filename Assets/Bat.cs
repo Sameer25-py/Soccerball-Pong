@@ -46,16 +46,19 @@ namespace DefaultNamespace
                 {
                     _enableMovement = false;
                 }
+            }
+        }
 
-                if (_enableMovement)
-                {
-                    Vector2 screenMousePos = Input.mousePosition;
-                    Vector2 worldMousePos  = _camera.ScreenToWorldPoint(screenMousePos);
-                    transform.position = new Vector2(
-                        lockX ? transform.position.x : worldMousePos.x,
-                        lockY ? transform.position.y : worldMousePos.y
-                    );
-                }
+        private void FixedUpdate()
+        {
+            if (_enableMovement)
+            {
+                Vector2 screenMousePos = Input.mousePosition;
+                Vector2 worldMousePos  = _camera.ScreenToWorldPoint(screenMousePos);
+                transform.position = new Vector2(
+                    lockX ? transform.position.x : worldMousePos.x,
+                    lockY ? transform.position.y : worldMousePos.y
+                );
             }
         }
     }
