@@ -541,6 +541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcaccdfb5f14061a7bcc4fbec7249c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clampedXRange: {x: -0.87, y: 0.87}
+  clampedYRange: {x: 0, y: 0}
   lockX: 0
   lockY: 1
 --- !u!50 &399161909
@@ -1349,7 +1351,7 @@ GameObject:
   - component: {fileID: 1216803605}
   - component: {fileID: 1216803606}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1801,6 +1803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcaccdfb5f14061a7bcc4fbec7249c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clampedXRange: {x: -0.87, y: 0.87}
+  clampedYRange: {x: 0, y: 0}
   lockX: 0
   lockY: 1
 --- !u!50 &1652971154

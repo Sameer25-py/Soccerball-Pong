@@ -7,6 +7,8 @@ namespace DefaultNamespace
     {
         private Camera _camera;
 
+        [SerializeField] private Vector2 clampedXRange, clampedYRange;
+
         [SerializeField] private bool lockX, lockY;
 
         private bool _enableMovement = false;
@@ -55,6 +57,10 @@ namespace DefaultNamespace
             {
                 Vector2 screenMousePos = Input.mousePosition;
                 Vector2 worldMousePos  = _camera.ScreenToWorldPoint(screenMousePos);
+                
+                worldMousePos.x = Mathf.Clamp(worldMousePos.x, clampedXRange.x, clampedXRange.y);
+                worldMousePos.y = Mathf.Clamp(worldMousePos.y, clampedYRange.x, clampedYRange.y);
+                
                 transform.position = new Vector2(
                     lockX ? transform.position.x : worldMousePos.x,
                     lockY ? transform.position.y : worldMousePos.y
