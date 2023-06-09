@@ -26,7 +26,6 @@ namespace DefaultNamespace
         {
             _ball        = FindObjectOfType<Ball>(true);
             _newPosition = transform.position;
-            _rb2D        = GetComponent<Rigidbody2D>();
         }
 
         private void Update()

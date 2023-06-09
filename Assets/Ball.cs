@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         _direction = Vector2.Reflect(_direction, col.contacts[0]
-            .normal) * Random.Range(2f, 4f);
+            .normal) * Random.Range(5f, 10f);
         _direction = _direction.normalized;
     }
 
