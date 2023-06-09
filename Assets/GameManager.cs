@@ -6,8 +6,9 @@ namespace DefaultNamespace
 {
     public class GameManager : MonoBehaviour
     {
-        public static Action<int> Goal;
-        public        Ball        Ball;
+        public static Action<int>  Goal;
+        public static Action<bool> PlayWithAI;
+        public        Ball         Ball;
 
         private List<Vector2> _randomDirections = new()
         {

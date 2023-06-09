@@ -17,23 +17,7 @@ namespace DefaultNamespace
         {
             _camera = Camera.main;
         }
-
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            if (col.collider && col.gameObject.CompareTag("Wall"))
-            {
-                _enableMovement = false;
-            }
-        }
-
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            if (col && col.CompareTag("Wall"))
-            {
-                _enableMovement = false;
-            }
-        }
-
+        
         private void Update()
         {
             if (Input.GetMouseButton(0))
