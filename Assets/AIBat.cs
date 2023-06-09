@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = System.Random;
 
 namespace DefaultNamespace
 {
@@ -11,7 +12,7 @@ namespace DefaultNamespace
 
         [SerializeField] private float aiSensitivity = 2f;
 
-        [SerializeField] private float errorThreshold = 0.4f;
+        [SerializeField] private float coolDown = 2f;
 
         private bool _enableMovement;
 
@@ -19,35 +20,41 @@ namespace DefaultNamespace
 
         private Ball _ball;
 
+        private float _elapsedTime = 0f;
+
         private void OnEnable()
         {
             _ball        = FindObjectOfType<Ball>(true);
             _newPosition = transform.position;
+            _rb2D        = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
         {
             if (!_ball) return;
-            float distance = Vector2.Distance(_ball.transform.position, transform.position);
-            if (distance <= aiSensitivity)
+            _elapsedTime += Time.deltaTime;
+            if (_elapsedTime > coolDown)
             {
-                if (UnityEngine.Random.Range(0f, 1f) <= errorThreshold)
+                _elapsedTime = 0f;
+                float distance = Vector2.Distance(_ball.transform.position, transform.position);
+                if (distance <= aiSensitivity)
                 {
-                    return;
+                    _newPosition   =  _ball.transform.position;
+                    _newPosition   += Vector2.one * UnityEngine.Random.Range(-1f, 1f);
+                    _newPosition.x =  Mathf.Clamp(_newPosition.x, clampedXRange.x, clampedXRange.y);
+                    _newPosition.y =  Mathf.Clamp(_newPosition.y, clampedYRange.x, clampedYRange.y);
+                    _newPosition = new Vector2(
+                        lockX ? transform.position.x : _newPosition.x,
+                        lockY ? transform.position.y : _newPosition.y
+                    );
                 }
-
-                _newPosition   = _ball.transform.position;
-                _newPosition.x = Mathf.Clamp(_newPosition.x, clampedXRange.x, clampedXRange.y);
-                _newPosition.y = Mathf.Clamp(_newPosition.y, clampedYRange.x, clampedYRange.y);
             }
         }
 
         private void FixedUpdate()
         {
-            transform.position = new Vector2(
-                lockX ? transform.position.x : _newPosition.x,
-                lockY ? transform.position.y : _newPosition.y
-            );
+            float step = 5f * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, _newPosition, step);
         }
     }
 }
