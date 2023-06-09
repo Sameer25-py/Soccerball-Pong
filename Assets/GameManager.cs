@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -7,6 +8,12 @@ namespace DefaultNamespace
     {
         public static Action<int> Goal;
         public        Ball        Ball;
+
+        private List<Vector2> _randomDirections = new()
+        {
+            Vector2.up,
+            Vector2.down
+        };
 
         private void OnEnable()
         {
@@ -17,13 +24,12 @@ namespace DefaultNamespace
         {
             Ball.SetDirection(Vector2.zero);
             Ball.transform.position = Vector2.zero;
-            Invoke(nameof(StartGameWithDelay),1f);
+            Invoke(nameof(StartGameWithDelay), 1f);
         }
 
         private void StartGameWithDelay()
         {
-            Vector2 randomVerticalDirection = new(0f, UnityEngine.Random.Range(-1f, 1f));
-            Ball.SetDirection(randomVerticalDirection);
+            Ball.SetDirection(_randomDirections[UnityEngine.Random.Range(0, _randomDirections.Count)]);
         }
 
         private void Start()
