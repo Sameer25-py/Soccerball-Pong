@@ -1722,6 +1722,7 @@ GameObject:
   - component: {fileID: 1652971152}
   - component: {fileID: 1652971153}
   - component: {fileID: 1652971154}
+  - component: {fileID: 1652971155}
   m_Layer: 0
   m_Name: batup
   m_TagString: Untagged
@@ -1829,7 +1830,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652971149}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bcaccdfb5f14061a7bcc4fbec7249c4, type: 3}
   m_Name: 
@@ -1859,6 +1860,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1652971155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652971149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4577f24214045d9ac913ce7f1c2f82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clampedXRange: {x: -0.87, y: 0.87}
+  clampedYRange: {x: 0, y: 0}
+  lockX: 0
+  lockY: 1
+  aiSensitivity: 2
+  coolDown: 2
 --- !u!1 &2058308507
 GameObject:
   m_ObjectHideFlags: 0
