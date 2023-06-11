@@ -10,6 +10,8 @@ namespace DefaultNamespace
         public static Action<bool> PlayWithAI;
         public        Ball         Ball;
 
+        public GameObject MainMenu;
+
         private List<Vector2> _randomDirections = new()
         {
             Vector2.up,
@@ -33,9 +35,27 @@ namespace DefaultNamespace
             Ball.SetDirection(_randomDirections[UnityEngine.Random.Range(0, _randomDirections.Count)]);
         }
 
-        private void Start()
+        private void StartGame()
         {
-            StartGameWithDelay();
+            Ball.SetDirection(Vector2.zero);
+            Ball.transform.position = Vector2.zero;
+            Invoke(nameof(StartGameWithDelay), 1f);
         }
+        
+        public void SingePlay()
+        {
+            MainMenu.SetActive(false);
+            PlayWithAI?.Invoke(false);
+            StartGame();
+        }
+
+        public void MultiPlay()
+        {
+            MainMenu.SetActive(false);
+            PlayWithAI?.Invoke(true);
+            StartGame();
+        }
+
+        public void Settings() { }
     }
 }
