@@ -14,6 +14,8 @@ namespace DefaultNamespace
 
         [SerializeField] private float coolDown = 2f;
 
+        private Collider2D _collider2D;
+
         private bool _enableMovement;
 
         private Vector2 _newPosition;
@@ -26,6 +28,7 @@ namespace DefaultNamespace
         {
             _ball        = FindObjectOfType<Ball>(true);
             _newPosition = transform.position;
+            _collider2D  = GetComponent<BoxCollider2D>();
         }
 
         private void Update()
